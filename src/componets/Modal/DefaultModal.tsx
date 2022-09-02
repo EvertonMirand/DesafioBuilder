@@ -1,26 +1,29 @@
-import React from "react";
-import { Modal, NativeSyntheticEvent } from "react-native";
+import React from 'react';
+import { Modal, NativeSyntheticEvent } from 'react-native';
+import { Container } from './DefaultModal.style';
 
 export interface DefaultModalProps {
   visible?: boolean;
-  onRequestClose?: (event: NativeSyntheticEvent<any>) => void;
+  onRequestClose?: (
+    event: NativeSyntheticEvent<any>
+  ) => void;
   children: React.ReactNode;
 }
 
 const DefaultModal: React.FC<DefaultModalProps> = ({
   children,
   visible,
-  onRequestClose,
+  onRequestClose
 }) => {
   return (
-    <Modal
+    <Container
       animationType="slide"
       transparent={true}
       visible={visible}
       onRequestClose={onRequestClose}
     >
       {children}
-    </Modal>
+    </Container>
   );
 };
 

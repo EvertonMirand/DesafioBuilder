@@ -19,8 +19,7 @@
     "react",
     "@typescript-eslint",
     "expo",
-    "prettier",
-    "plugin:react/recommended"
+    "prettier"
   ],
   "rules": {
     "indent": ["error", 2],
