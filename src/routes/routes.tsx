@@ -1,6 +1,6 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 import HomePage from '../screens/HomePage';
-const { Navigator, Screen } = createBottomTabNavigator();
+const { Navigator, Screen } = createStackNavigator();
 
 export const Routes = () => {
   return (

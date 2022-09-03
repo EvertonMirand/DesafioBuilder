@@ -1,8 +1,15 @@
 import React, { useContext } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import DefaultModal from '../componets/Modal/DefaultModal';
+import Address from '../componets/Address/Address';
+import AlertModal from '../componets/Modal/AlertModal';
+import ErrorModal from '../componets/Modal/ErrorModal';
+import BuilderButton from '../componets/shared/BuilderButton';
+import WeatherShow from '../componets/Weather/WeatherShow';
 
 import { WeatherContext } from '../context/WeatherContex';
+import { BottomSpace, BuilderText } from '../styles/Styles';
+
+import { HomePageContainer } from './HomePage.styled';
 
 const HomePage: React.FC = () => {
   const {
@@ -16,38 +23,22 @@ const HomePage: React.FC = () => {
 
   return (
     <>
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: '#fff'
-        }}
-      >
-        <View>
-          <Text>Temperatura</Text>
-          <Text>{weather?.main.temp}º</Text>
-        </View>
-        <View>
-          <Text>Endereço</Text>
-          <Text>
-            {address?.name}, {address?.district} -{' '}
-            {address?.subregion}, {address?.region}
-          </Text>
-          <Text>{address?.country}</Text>
-        </View>
-        <TouchableOpacity
+      <HomePageContainer>
+        <WeatherShow />
+        <Address />
+        <BottomSpace size={30} />
+        <BuilderButton
           onPress={getNewLocation}
           disabled={loading}
-        >
-          <Text>Atualizar</Text>
-        </TouchableOpacity>
-      </View>
-      <DefaultModal
-        visible={!!error}
+          text="Atualizar"
+        />
+      </HomePageContainer>
+      <ErrorModal
+        error={error}
+        onPressClose={onClearError}
         onRequestClose={onClearError}
-      >
-        <Text>Erro ao obter a localização</Text>
-        <Text>{error}</Text>
-      </DefaultModal>
+        title="Erro ao obter a localização"
+      />
     </>
   );
 };
