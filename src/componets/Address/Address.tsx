@@ -1,5 +1,5 @@
 import React, { Fragment, useContext } from 'react';
-import { View } from 'react-native';
+import { View, ActivityIndicator } from 'react-native';
 import { WeatherContext } from '../../context/WeatherContex';
 import {
   BottomSpace,
@@ -22,8 +22,9 @@ const Address: React.FC = () => {
       <BuilderText>{address?.country}</BuilderText>
     </View>
   ) : (
-    <Fragment />
+    <ActivityIndicator />
   );
 };
 
 export default Address;
+

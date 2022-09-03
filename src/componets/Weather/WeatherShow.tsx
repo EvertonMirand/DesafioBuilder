@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { ActivityIndicator } from 'react-native';
 
 import { WeatherContext } from '../../context/WeatherContex';
 
@@ -21,8 +22,9 @@ const WeatherShow: React.FC = () => {
       </WeatherTemperature>
     </WeatherContainer>
   ) : (
-    <React.Fragment />
+    <ActivityIndicator />
   );
 };
 
 export default WeatherShow;
+
