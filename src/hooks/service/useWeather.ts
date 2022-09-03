@@ -10,7 +10,7 @@ export const useWeather = () => {
       return api.post<Weather>(
         `/weather?lat=${lat.toFixed(2)}&lon=${long.toFixed(
           2
-        )}&appid=${key}`
+        )}&lang=pt_br&units=metric&appid=${key}`
       );
     },
     []
