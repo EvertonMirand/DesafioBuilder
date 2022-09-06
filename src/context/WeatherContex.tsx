@@ -19,7 +19,9 @@ export interface WeatherContextValues {
 
 const defaultValue: WeatherContextValues = {
   getNewLocation: () => Promise.reject<void>(),
-  onClearError() {}
+  onClearError() {},
+  loading: false,
+  error: ''
 };
 
 export const WeatherContext =
@@ -27,15 +29,26 @@ export const WeatherContext =
 
 export const WeatherProvider: React.FC<{
   children: React.ReactNode;
-}> = ({ children }) => {
-  const [loading, setLoading] = useState(false);
+  weatherContextValues?: WeatherContextValues;
+}> = ({
+  children,
+  weatherContextValues = defaultValue
+}) => {
+  const [loading, setLoading] = useState(
+    weatherContextValues.loading
+  );
   const [location, setLocation] =
     useState<Location.LocationObject>();
 
-  const [weather, setWeather] = useState<Weather>();
-  const [error, setError] = useState<string>();
-  const [address, setAddress] =
-    useState<Location.LocationGeocodedAddress>();
+  const [weather, setWeather] = useState<
+    Weather | undefined
+  >(weatherContextValues.weather);
+  const [error, setError] = useState<string | undefined>(
+    weatherContextValues.error
+  );
+  const [address, setAddress] = useState<
+    Location.LocationGeocodedAddress | undefined
+  >(weatherContextValues.address);
 
   const { getWeather } = useWeather();
 

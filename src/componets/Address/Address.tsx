@@ -15,7 +15,7 @@ const Address: React.FC = () => {
         Endereço
       </BuilderText>
       <BottomSpace size={10} />
-      <BuilderText>
+      <BuilderText testID="address-description">
         {address?.name}, {address?.district} -{' '}
         {address?.subregion}, {address?.region}
       </BuilderText>
@@ -27,4 +27,3 @@ const Address: React.FC = () => {
 };
 
 export default Address;
-

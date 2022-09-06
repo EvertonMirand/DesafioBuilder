@@ -27,6 +27,7 @@ const BuilderButton: React.FC<BuilderButtonProps> = ({
         color={color}
         fontSize={fontSize}
         fontWeight={fontWeight}
+        testID="builder-button-text"
       >
         {text}
       </BuilderText>
@@ -35,3 +36,4 @@ const BuilderButton: React.FC<BuilderButtonProps> = ({
 };
 
 export default BuilderButton;
+
