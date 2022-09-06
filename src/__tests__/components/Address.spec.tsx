@@ -32,7 +32,7 @@ const Providers: React.FC<{
 };
 
 describe('Address', () => {
-  it('should render', () => {
+  it('should render with address', () => {
     const { getByTestId } = render(<Address />, {
       wrapper: Providers
     });

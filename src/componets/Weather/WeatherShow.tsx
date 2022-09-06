@@ -17,7 +17,7 @@ const WeatherShow: React.FC = () => {
       <BuilderText fontWeight="bold">
         Temperatura
       </BuilderText>
-      <WeatherTemperature>
+      <WeatherTemperature testID="weather-temp">
         {weather?.main.temp}º
       </WeatherTemperature>
     </WeatherContainer>
@@ -27,4 +27,3 @@ const WeatherShow: React.FC = () => {
 };
 
 export default WeatherShow;
-

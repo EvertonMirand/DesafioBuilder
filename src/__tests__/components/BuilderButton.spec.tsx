@@ -2,7 +2,7 @@ import { render } from '@testing-library/react-native';
 import BuilderButton from '../../componets/shared/BuilderButton';
 
 describe('BuilderButton', () => {
-  it('should render', () => {
+  it('should show text', () => {
     const { getByTestId } = render(
       <BuilderButton text="Title" />
     );
