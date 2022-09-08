@@ -78,17 +78,14 @@ const getInitialData = () => {
 describe('HomePage', () => {
   it('should show values correctly', async () => {
     getInitialData();
-    const { rerender, debug, getByTestId } = render(
-      <HomePage />,
-      {
-        wrapper: Providers
-      }
-    );
+    const { rerender, getByTestId } = render(<HomePage />, {
+      wrapper: Providers
+    });
 
     await act(async () => {
       rerender(<HomePage />);
     });
-    debug();
+
     const elementWeather = getByTestId('weather-temp');
     expect(elementWeather.props.children).toStrictEqual([
       298.48,

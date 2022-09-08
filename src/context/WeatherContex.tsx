@@ -83,38 +83,44 @@ export const WeatherProvider: React.FC<{
     })();
   }, [getNewLocation]);
 
-  useEffect(() => {
-    if (location) {
-      setLoading(true);
+  const fetchAddress = useCallback(
+    (location: Location.LocationObject) =>
       Location.reverseGeocodeAsync(location.coords)
         .then((value) => {
           setAddress(value[0]);
         })
         .catch((err) => {
           setError(err.message);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-    }
-  }, [location]);
+        }),
+    []
+  );
 
-  useEffect(() => {
-    if (location) {
-      setLoading(true);
+  const fetchWeather = useCallback(
+    (location: Location.LocationObject) => {
       const { coords } = location;
-      getWeather(coords.latitude, coords.longitude)
+      return getWeather(coords.latitude, coords.longitude)
         .then(({ data }) => {
           setWeather(data);
         })
         .catch((err) => {
           setError(err.message);
-        })
-        .finally(() => {
-          setLoading(false);
         });
+    },
+    []
+  );
+
+  useEffect(() => {
+    if (location) {
+      setLoading(true);
+
+      Promise.allSettled([
+        fetchAddress(location),
+        fetchWeather(location)
+      ]).finally(() => {
+        setLoading(false);
+      });
     }
-  }, [location]);
+  }, [location, fetchAddress, fetchWeather]);
 
   const onClearError = () => setError(undefined);
 
